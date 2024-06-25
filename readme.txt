@@ -18,6 +18,10 @@ For generating the QR code, packages in golang inclued, skip2/go-qr, yeqown/go-q
 
 so here we are using go-qrcode.v2 which is updagrade to go-qrcode
 
-go-qrcode.v2 is a major upgrade from v1, and it is not backward compatible. 
+go-qrcode.v2 :- is a major upgrade from v1, and it is not backward compatible. 
 v2 redesigned the API, and it is more flexible and powerful. 
 Features are split into different modules (according to functionality).
+
+
+
+error correction:- This allows the code to still be readable even if it's slightly damaged or obscured. Higher error correction levels can increase the size of the QR code slightly.

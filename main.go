@@ -19,13 +19,17 @@ import (
 // }
 
 func main() {
-	qrc, err := qrcode.New("https://play.google.com/store/apps/details?id=com.whatsapp&pcampaignid=web_share")
+	path := "https://play.google.com/store/apps/details?id=com.whatsapp&pcampaignid=web_share"
+	// crlevel := qrcode.ErrorCorrectionHighest
+	// qrc, err := qrcode.New(path)
+	qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionMedium))
+	// qr := qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionHighest)
 	if err != nil {
 		fmt.Printf("could not generate QRCode: %v", err)
 	}
 
 	// // save file
-	// if err := qrc.Save("./repo-qrcode.jpeg"); err != nil {
+	// if err := qr.Save("./repo-qrcode.jpeg"); err != nil {
 	// 	fmt.Printf("could not save image: %v", err)
 	// }
 
@@ -33,11 +37,13 @@ func main() {
 		// standard.WithHalftone("./a-img (1).png"),
 		// standard.WithQRWidth(250),
 		standard.WithQRWidth(10),
-
+		// standard.WithBgTransparent(),
+		// standard.WithBgColorRGBHex("#95A5A6"),        //change colour of qr background
+		// standard.WithFgColorRGBHex("#AF7AC5"),        // change colour of qr dots or square
 		standard.WithLogoImageFilePNG("./a-img.png"), // here the size of image is - width-90pixels,Height-80pixels
 		// standard.WithLogoImage()
 	}
-	filename := "./qr_code.png"
+	filename := "./qr_code_medium.png"
 
 	// if *transparent {
 	// 	options = append(
