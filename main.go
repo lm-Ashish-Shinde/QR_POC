@@ -23,7 +23,7 @@ func main() {
 	// crlevel := qrcode.ErrorCorrectionHighest
 	// qrc, err := qrcode.New(path)
 	// qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionMedium))
-	qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionLow))
+	qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionHighest))
 
 	// qr := qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionHighest)
 	if err != nil {
@@ -36,16 +36,18 @@ func main() {
 	// }
 
 	options := []standard.ImageOption{
+		// as int value provided here is in pixels.
 		// standard.WithHalftone("./a-img (1).png"),
 		// standard.WithQRWidth(250),
-		standard.WithQRWidth(10), // size will be handeled by fronend team.
+		standard.WithQRWidth(21), // size here is in pixels, size will be handeled by fronend team. we give decent quality
 		// standard.WithBgTransparent(),
 		// standard.WithBgColorRGBHex("#95A5A6"),        //change colour of qr background
 		// standard.WithFgColorRGBHex("#AF7AC5"),        // change colour of qr dots or square
+		standard.WithBorderWidth(20),
 		standard.WithLogoImageFilePNG("./a-img.png"), // here the size of image is - width-90pixels,Height-80pixels
 		// standard.WithLogoImage()
 	}
-	filename := "./qr_code_low.png"
+	filename := "./qr_code_high-width10.png"
 
 	// if *transparent {
 	// 	options = append(
