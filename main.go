@@ -22,7 +22,9 @@ func main() {
 	path := "https://play.google.com/store/apps/details?id=com.whatsapp&pcampaignid=web_share"
 	// crlevel := qrcode.ErrorCorrectionHighest
 	// qrc, err := qrcode.New(path)
-	qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionMedium))
+	// qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionMedium))
+	qrc, err := qrcode.NewWith(path, qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionLow))
+
 	// qr := qrcode.WithErrorCorrectionLevel(qrcode.ErrorCorrectionHighest)
 	if err != nil {
 		fmt.Printf("could not generate QRCode: %v", err)
@@ -36,14 +38,14 @@ func main() {
 	options := []standard.ImageOption{
 		// standard.WithHalftone("./a-img (1).png"),
 		// standard.WithQRWidth(250),
-		standard.WithQRWidth(10),
+		standard.WithQRWidth(10), // size will be handeled by fronend team.
 		// standard.WithBgTransparent(),
 		// standard.WithBgColorRGBHex("#95A5A6"),        //change colour of qr background
 		// standard.WithFgColorRGBHex("#AF7AC5"),        // change colour of qr dots or square
 		standard.WithLogoImageFilePNG("./a-img.png"), // here the size of image is - width-90pixels,Height-80pixels
 		// standard.WithLogoImage()
 	}
-	filename := "./qr_code_medium.png"
+	filename := "./qr_code_low.png"
 
 	// if *transparent {
 	// 	options = append(

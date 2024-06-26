@@ -24,4 +24,18 @@ Features are split into different modules (according to functionality).
 
 
 
-error correction:- This allows the code to still be readable even if it's slightly damaged or obscured. Higher error correction levels can increase the size of the QR code slightly.
+error correction:- This allows the code to still be readable even if it's slightly damaged or obscured. 
+                    Higher error correction levels can increase the size of the QR code slightly.
+
+                    It has 4 levels of the correction low, medium, high, highest
+
+disadvantages of error correction:-
+                1. higher correction level has low readibility.
+                2. big size
+                3. more complex
+                4. choose as per requirement.
+
+
+As per discussed:-
+    size can be set from frontend
+    we have to generate the qr code of decent size and quality which can be scaled if required.
