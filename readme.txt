@@ -1,41 +1,85 @@
-For generating the QR code, packages in golang inclued, skip2/go-qr, yeqown/go-qrcode
-
-1. yeqown/go-qrcode:-  This packages doesnt have many forks and stars in github,
-                    This package is well maintained and have new features
+POC for QR code Generation in GO.
 
 
-2. skip2/go-qr :- This package is old, and does have any latest updates.
-                The last update for this was 6 years ago.
-                This is commonly used package
+Packages for QR code generation in golang: 
+
+1. yeqown/go-qrcode:- 
+        i.  This packages doesnt have many forks and stars in github,
+        ii. This package is well maintained and have new features
+        iii.Latest Version of this package is is major updagrade and is not backward compatible.
+        iv. New Version redesigned the API, and it is more flexible and powerful. 
+        v. Features are split into different modules (according to functionality).
+
+
+2. skip2/go-qr :- 
+        i.   This package is old, and does have any latest updates.
+        ii.  The last update for this was 6 years ago.
+        iii. This is commonly used package 
+
+
+3. boombuler/barcode:-
+        i. This package has 1.6k stars in github, 
+        ii.Last updated 2 years ago, 
+        iii.Has many other formats like, 2 of 5,Aztec Code,Codabar,Code 128,
+            Code 39,Code 93,Datamatrix,EAN 13,EAN 8,PDF 417, and QR code
+        iv. This could be a good alternative.
 
 
 
-3. boombuler/barcode:- this package has 1.6k stars in github, 
-                    last updated 2 years ago, 
-                    has many other formats like, 2 of 5,Aztec Code,Codabar,Code 128,
-                    Code 39,Code 93,Datamatrix,EAN 13,EAN 8,PDF 417, and QR code
+
+Viewing Distance for QR code :- 
+        1.The size of qr code, its correction level, device camera quality affects the scaning Distance of qr code.
+        2.The general rule of thumb is a 10:1 distance-to-size ratio, meaning that the QR code size should be 1/10th of the distance from which it will be scanned.
+        3.For example, if you anticipate users scanning a QR code from a distance of 1 meter (approximately 39 inches), 
+          a QR code size of around 10-15 cm (4-6 inches) in physical dimensions or around 400-600 pixels in each dimension 
+          could be appropriate. This provides enough detail and clarity for reliable scanning without requiring users to get too close to the QR code.
+        
+
+    Factor affecting the readibility of qr code:
+        i. QR code Size:- Larger qr code is more readable
+        ii. QR code resolution and module size:-QR codes are composed of modules (black and white squares). Higher resolution and larger module sizes improve readability.
+        iii. Scaning device quality.
+
+    Practical Considerations:
+        i. QR code should have sufficient contrast between the code and its background, opt for high contrast colors incase using colourful qr.
+        ii.Test qr code before deploying under the similar conditions we are using them.
+        iii. Add sufficient correction level.
 
 
-so here we are using go-qrcode.v2 which is updagrade to go-qrcode
-
-go-qrcode.v2 :- is a major upgrade from v1, and it is not backward compatible. 
-v2 redesigned the API, and it is more flexible and powerful. 
-Features are split into different modules (according to functionality).
-
-
-
-error correction:- This allows the code to still be readable even if it's slightly damaged or obscured. 
-                    Higher error correction levels can increase the size of the QR code slightly.
-
-                    It has 4 levels of the correction low, medium, high, highest
+Error correction:- 
+        1. This allows the code to still be readable even if it's slightly damaged or obscured or even blured. 
+        2. It has 4 levels of the correction Low (L), Medium (M), Quartile (Q), and High (H).
+        3. The higher the error correction level, the more data redundancy is added to the QR code, making it larger but more resilient to errors.
 
 disadvantages of error correction:-
-                1. higher correction level has low readibility.
-                2. big size
-                3. more complex
-                4. choose as per requirement.
+        1. QR codes with higher error correction levels may take slightly longer to scan compared to codes with lower error correction levels.
+        2. Depending too heavily on error correction can lead to complacency in QR code production and placement.
+        3. While error correction aims to recover data accurately, in some cases, a severely damaged QR code may still be misinterpreted due to limitations in error correction algorithms or scanning devices.
+        4. Different QR code readers and software implementations may interpret error correction levels differently or have varying levels of support for high-error correction codes.
+
+Halftone Qr code :-
+    1. Halftone QR codes are a specialized type of QR code that uses halftone patterns instead of solid black and white squares (modules) to encode information.
+    2. This technique allows QR codes to be visually integrated into complex or colorful backgrounds without sacrificing scanning reliability.
+    3. The image should be provide to create a halftone patten.
 
 
-As per discussed:-
-    size can be set from frontend
-    we have to generate the qr code of decent size and quality which can be scaled if required.
+Color of Qr:
+    1. The colour of QR code and its background can be changed.
+    2. The both colours should have enough contrast between them to ensure better readability.
+    3. The colours can be used to make it unique, attractive and represent brand identity.
+    4. The default black and white colours gives the best contrast and has highest readability.
+
+
+Points to remember as discussed with team:-
+    1. The use of yeqown/go-qrcode/v2 package is considered after discussion and comparision with other packages
+    2. Size can be changed from frontend team Depending on usecase.
+    3. We have to generate the QR code of decent size and quality which can be scaled if required.
+    4. Should consider decent size for qr code that will be readabile from distance (1:10 ratio  bet qr code size and scanning distance).
+    5. The Halftone image cannot be used in the qr code as the logo size is larger.
+    6. The small logo can be placed inside the qr code.
+    7. The size of logo image which is placed inside the qr code should be reduced according to the size of qr code.
+    8. Colour of qr code should be kept default(black and white) as it provides high contrast ratio which is more readable.
+    9. Error correction for qr should be implemented.    
+
+
+
